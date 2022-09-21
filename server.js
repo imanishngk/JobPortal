@@ -1,6 +1,8 @@
 const express = require("express");
 require("dotenv").config();
 
+//Mongo DB connection
+require("./config/dbconnection")
 const app = express();
 
 app.get("/mid", (req, res, next)=>{
