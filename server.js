@@ -1,13 +1,17 @@
 const express = require("express");
 require("dotenv").config();
 
-//Mongo DB connection
+//internal dependancy
 require("./config/dbconnection")
+const error = require("./middleware/error");
+const auth_route = require("./route/auth")
 const app = express();
+app.use(express.json())
 
-app.get("/mid", (req, res, next)=>{
-    res.status(200).send("middleware created")
-})
+app.use('/api', auth_route)
+
+//error handiling
+app.use(error)
 
 app.listen(process.env.PORT, (data, err) => {
   if (err) {
