@@ -1,4 +1,5 @@
 const express = require("express");
+var cors = require('cors')
 require("dotenv").config();
 
 //internal dependancy
@@ -8,7 +9,12 @@ const auth_route = require("./route/auth")
 const app = express();
 app.use(express.json())
 
+//FixMe: Axios error
+app.use(cors())
+
+
 app.use('/api', auth_route)
+
 
 //error handiling
 app.use(error)
